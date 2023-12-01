@@ -1,4 +1,4 @@
-# ABAP_Text_Translation
+# ABAP_TextTranslation
 SAP ABAP code to Download and Ypload translation in Mass
 
 This Git Repository contain 2 Programs to Help ABAPer's to<br /> 
