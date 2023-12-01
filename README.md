@@ -54,4 +54,4 @@ Excel Upload Format for Message Class.<br />
 ![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/29713e9f-ec4c-4b40-b9c2-16c6f344c56f)<br />
 <br />
 Excel Upload Format for DDIC Data type.<br />
-![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/495fcfb7-011c-4ee7-b03c-9602cc7f9089)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/88f851cb-c574-4a52-87d2-1d645e098f0e)<br />
