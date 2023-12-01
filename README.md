@@ -5,12 +5,13 @@ This Git Repository contain 2 Programs to Help ABAPer's to<br />
 
 **Download Program name YPROGRAM_TEXT_DOWNLOAD**<br />
 Program to download-> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screenText/Text elements<br />
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/172851b9-75c3-4b29-b2c0-4a11b308ff3c)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/74942876-b2cd-407d-bb4d-690e1429b695)
+<br />
 **Module** Can only be One<br />
 **Language** Soure Text Language<br />
 **Program Name** Program name whose text want's to download<br />
 
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/2f39dc2d-68c1-4a98-9042-1a02a070a876)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/14d02341-f3a8-4cde-b6af-9190185d002a)<br />
 
 **Module** The Module if you want to segrigate the List based on the Module (can only have one Module at a time)<br />
 **Program Name** Selected/Entered Program name<br />
@@ -24,7 +25,7 @@ Translation Text for Data Types in table can be downloaded form table *DD03M*
 
 **Upload Program name YPROGRAM_TEXT_UPLOAD**<br />
 Program to upload -> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screen text/Text elements/Message class/Data type Translation<br />
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/8375fb5b-8ca0-4a08-bb39-768f992c1c82)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/47b5fa06-40f4-4c91-ae95-d4a09ce5e5f2)<br />
 **Radio Button** Can only perform/trigger one task at the time<br />
 **Executable/ Module Pool Prg**<br />
 **Message Class**<br />
@@ -39,18 +40,18 @@ Program to upload -> SAP Module pool(Screen)/Module Pool Title/ Executable progr
 <br />
 **--NOTE--**<br />
 In the development of the upload program **FM ALSM_EXCEL_TO_INTERNAL_TABLE** was onverted to custom FM  as the the limit of the FM.<br />
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/a2294e05-9052-4abf-a5e2-1675d5b7e1ff)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/3b674869-3814-44fd-a8aa-75797b149aa8)<br />
 <br />
 and Structue **ALSMEX_TABLINE** was copied to create custom structure whick was used to trigger the custom FM.
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/42411523-b124-4493-a363-36d717703ca1)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/15196037-cd7d-433e-9765-0a4ddc6fbbf2)<br />
 Extra code changes required to use Excel to Internal table FM(Copy of Function group and Function module and change in Top of Function group )<br />
 <br />
 Excel Upload Format for module Pool and executable program.<br />
 Except **Column G** rest of the excel structure can be downloaded form Download program.<br />
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/e578a2de-f33b-4f22-b80f-1f022f210d04)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/468afe74-489f-4cae-8494-e20207121000)<br />
 <br />
 Excel Upload Format for Message Class.<br />
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/ccd9e92b-202c-4b90-9b03-33ec40b0d5d7)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/29713e9f-ec4c-4b40-b9c2-16c6f344c56f)<br />
 <br />
 Excel Upload Format for DDIC Data type.<br />
-![image](https://github.com/coldblood02/ABAP_Text_Translation/assets/25544031/7f666a66-fb71-4655-924a-40fa5ffa1e43)<br />
+![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/495fcfb7-011c-4ee7-b03c-9602cc7f9089)<br />
