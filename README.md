@@ -3,7 +3,7 @@ SAP ABAP code to Download and Ypload translation in Mass
 
 This Git Repository contain 2 Programs to Help ABAPer's to<br /> 
 
-**Download Program name YPROGRAM_TEXT_DOWNLOAD**<br />
+**Download Program name YPROGRAM_TEXT_DOWNLOAD/ T-code YTEXT_DOWN**<br />
 Program to download-> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screenText/Text elements<br />
 ![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/74942876-b2cd-407d-bb4d-690e1429b695)
 <br />
@@ -23,7 +23,7 @@ Program to download-> SAP Module pool(Screen)/Module Pool Title/ Executable prog
 Translation Text for Message class can be downloaded form table *T100*
 Translation Text for Data Types in table can be downloaded form table *DD03M*
 
-**Upload Program name YPROGRAM_TEXT_UPLOAD**<br />
+**Upload Program name YPROGRAM_TEXT_UPLOAD/ T-code YTEXT_UP**<br />
 Program to upload -> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screen text/Text elements/Message class/Data type Translation<br />
 ![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/47b5fa06-40f4-4c91-ae95-d4a09ce5e5f2)<br />
 **Radio Button** Can only perform/trigger one task at the time<br />
