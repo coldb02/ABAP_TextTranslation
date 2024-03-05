@@ -12,8 +12,8 @@ TYPES: BEGIN OF ty_program,
          mdul  TYPE p01_ui_baust,
          pname TYPE programm,
          dynr  TYPE /plmb/rcp_field_type,
-         leng  TYPE sqllength,
          key   TYPE /pra/pn_key_str,
+         leng  TYPE sqllength,
          entry TYPE textpooltx,
        END OF ty_program.
 
