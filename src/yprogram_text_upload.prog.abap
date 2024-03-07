@@ -211,7 +211,7 @@ FORM process_data_mp .
     REFRESH: lt_colob_tmp.
 
     CASE ls_program_tmp-dynr.
-      WHEN 'Text Element' OR 'Report Title'.
+      WHEN 'Text Element' OR 'Report Title' OR 'H'.
         lv_trobj_name = 'REPT'.
         lv_objname    = ls_program_tmp-pname.
       WHEN 'Module Pool Title'.
