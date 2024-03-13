@@ -38,14 +38,14 @@ DATA: gt_program TYPE TABLE OF ty_program,
       gt_output  TYPE TABLE OF ty_output.
 
 SELECTION-SCREEN BEGIN OF BLOCK rad1 WITH FRAME TITLE TEXT-001.
-PARAMETERS: r1 RADIOBUTTON GROUP rad1 DEFAULT 'X',
-            r2 RADIOBUTTON GROUP rad1,
-            r3 RADIOBUTTON GROUP rad1.
-PARAMETERS: p_upload TYPE localfile OBLIGATORY,
-            p_slang  TYPE spras DEFAULT sy-langu OBLIGATORY,
-            p_tlang  TYPE spras OBLIGATORY.
-SELECT-OPTIONS s_prgna FOR figekwc_repform-repid NO INTERVALS NO-EXTENSION OBLIGATORY.
-PARAMETERS: p_save AS CHECKBOX DEFAULT ' '.
+  PARAMETERS: r1 RADIOBUTTON GROUP rad1 DEFAULT 'X',
+              r2 RADIOBUTTON GROUP rad1,
+              r3 RADIOBUTTON GROUP rad1.
+  PARAMETERS: p_upload TYPE localfile OBLIGATORY,
+              p_slang  TYPE spras DEFAULT sy-langu OBLIGATORY,
+              p_tlang  TYPE spras OBLIGATORY.
+  SELECT-OPTIONS s_prgna FOR figekwc_repform-repid NO INTERVALS NO-EXTENSION OBLIGATORY.
+  PARAMETERS: p_save AS CHECKBOX DEFAULT ' '.
 
 SELECTION-SCREEN END OF BLOCK rad1.
 
@@ -60,7 +60,9 @@ AT SELECTION-SCREEN ON VALUE-REQUEST FOR  p_upload .
 
 START-OF-SELECTION.
 
-  PERFORM: fetch_excel_data.
+
+  PERFORM: validate_labguage,
+           fetch_excel_data.
 *-- determin the type of translation.
 
   IF r1 = 'X'.
@@ -211,7 +213,7 @@ FORM process_data_mp .
     REFRESH: lt_colob_tmp.
 
     CASE ls_program_tmp-dynr.
-      WHEN 'Text Element' OR 'Report Title' OR 'H'.
+      WHEN 'Text Element' OR 'Report Title' OR 'H'.  "H -> List Heading
         lv_trobj_name = 'REPT'.
         lv_objname    = ls_program_tmp-pname.
       WHEN 'Module Pool Title'.
@@ -237,7 +239,7 @@ FORM process_data_mp .
         unknown_ta_type = 2
         OTHERS          = 3.
     IF sy-subrc <> 0.
-      MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
       EXIT.
 
 * Implement suitable error handling here
@@ -255,7 +257,7 @@ FORM process_data_mp .
   CLEAR: gs_output.
   REFRESH: lt_lxe_pcx.
 
-  LOOP AT lt_colob INTO DATA(ls_colob).
+  LOOP AT lt_colob INTO DATA(ls_colob) WHERE objtype <> 'CAD4'.
 
     REFRESH: lt_lxe_pcx.
     CLEAR: lv_lxestatprc, lv_lxestring.
@@ -283,10 +285,10 @@ FORM process_data_mp .
       .
     IF lv_lxestatprc <> 'S'.
       IF lv_lxestring IS NOT INITIAL.
-        MESSAGE lv_lxestring TYPE 'S' DISPLAY LIKE 'E'.
+        MESSAGE lv_lxestring TYPE 'E'.
         EXIT.
       ELSE.
-        MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+        MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
         EXIT.
       ENDIF.
     ENDIF.
@@ -301,11 +303,22 @@ FORM process_data_mp .
           gs_output-leng_sys      = <lfs_les_pcx_tmp>-unitmlt.
           gs_output-entry_en_sys  = <lfs_les_pcx_tmp>-s_text.
           gs_output-entry_hu_sys  =  <lfs_les_pcx_tmp>-t_text.
+*-- Module pool Screen
           LOOP AT gt_program INTO gs_program WHERE dynr     = lv_dynnr_txt
                                                AND entry_en = <lfs_les_pcx_tmp>-s_text.
             <lfs_les_pcx_tmp>-t_text = gs_program-entry_hu.
             EXIT.
           ENDLOOP.
+*-- With some text
+          IF sy-subrc <> 0.
+            SPLIT <LFS_LES_PCX_TMP>-TEXTKEY AT ' ' INTO DATA(lv_sample_text) DATA(lv_b).
+            LOOP AT gt_program INTO gs_program WHERE dynr     CS lv_sample_text
+                                                 AND entry_en EQ <lfs_les_pcx_tmp>-s_text.
+              <lfs_les_pcx_tmp>-t_text = gs_program-entry_hu.
+              EXIT.
+            ENDLOOP.
+          ENDIF.
+*-- Search whole
           IF sy-subrc <> 0.
             LOOP AT gt_program INTO gs_program WHERE entry_en = <lfs_les_pcx_tmp>-s_text.
               <lfs_les_pcx_tmp>-t_text = gs_program-entry_hu.
@@ -344,10 +357,10 @@ FORM process_data_mp .
           lt_pcx_s1 = lt_lxe_pcx.
       IF lv_lxestatprc <> 'S'.
         IF lv_lxestring IS NOT INITIAL.
-          MESSAGE lv_lxestring TYPE 'S' DISPLAY LIKE 'E'.
+          MESSAGE lv_lxestring TYPE 'E'.
           EXIT.
         ELSE.
-          MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
           EXIT.
         ENDIF.
 
@@ -429,7 +442,7 @@ FORM process_data_mc .
         unknown_ta_type = 2
         OTHERS          = 3.
     IF sy-subrc <> 0.
-      MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
       EXIT.
 
 * Implement suitable error handling here
@@ -483,10 +496,10 @@ FORM process_data_mc .
       .
     IF lv_lxestatprc <> 'S'.
       IF lv_lxestring IS NOT INITIAL.
-        MESSAGE lv_lxestring TYPE 'S' DISPLAY LIKE 'E'.
+        MESSAGE lv_lxestring TYPE 'E'.
         EXIT.
       ELSE.
-        MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+        MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
         EXIT.
       ENDIF.
     ENDIF.
@@ -546,10 +559,10 @@ FORM process_data_mc .
           lt_pcx_s1 = lt_lxe_pcx.
       IF lv_lxestatprc <> 'S'.
         IF lv_lxestring IS NOT INITIAL.
-          MESSAGE lv_lxestring TYPE 'S' DISPLAY LIKE 'E'.
+          MESSAGE lv_lxestring TYPE 'E'.
           EXIT.
         ELSE.
-          MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
           EXIT.
         ENDIF.
 
@@ -631,7 +644,7 @@ FORM process_data_dt .
         unknown_ta_type = 2
         OTHERS          = 3.
     IF sy-subrc <> 0.
-      MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
       EXIT.
 
 * Implement suitable error handling here
@@ -678,10 +691,10 @@ FORM process_data_dt .
       .
     IF lv_lxestatprc <> 'S'.
       IF lv_lxestring IS NOT INITIAL.
-        MESSAGE lv_lxestring TYPE 'S' DISPLAY LIKE 'E'.
+        MESSAGE lv_lxestring TYPE 'E'.
         EXIT.
       ELSE.
-        MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+        MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
         EXIT.
       ENDIF.
     ENDIF.
@@ -738,10 +751,10 @@ FORM process_data_dt .
           lt_pcx_s1 = lt_lxe_pcx.
       IF lv_lxestatprc <> 'S'.
         IF lv_lxestring IS NOT INITIAL.
-          MESSAGE lv_lxestring TYPE 'S' DISPLAY LIKE 'E'.
+          MESSAGE lv_lxestring TYPE 'E'.
           EXIT.
         ELSE.
-          MESSAGE ID sy-msgid TYPE 'S' NUMBER sy-msgno DISPLAY LIKE 'E' WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
           EXIT.
         ENDIF.
 
@@ -910,4 +923,39 @@ FORM fetch_source_traget_language  USING    p_p_slang   TYPE syst-langu
     p_lv_flag = 'X'.
   ENDIF.
 
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form validate_labguage
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*& -->  p1        text
+*& <--  p2        text
+*&---------------------------------------------------------------------*
+FORM validate_labguage .
+
+  DATA: lv_t_lang TYPE lxeisolang,
+        lv_s_lang TYPE lxeisolang,
+        lv_flag   TYPE char1.
+
+  PERFORM: fetch_source_traget_language USING    p_slang
+                                        CHANGING lv_s_lang
+                                                 lv_flag.
+  IF lv_flag IS NOT INITIAL.
+    MESSAGE: 'Langauge error' TYPE 'S' DISPLAY LIKE 'E'.
+    LEAVE LIST-PROCESSING.
+  ENDIF.
+
+  PERFORM: fetch_source_traget_language USING    p_tlang
+                                        CHANGING lv_t_lang
+                                                 lv_flag.
+  IF lv_flag IS NOT INITIAL.
+    MESSAGE: 'Langauge error' TYPE 'S' DISPLAY LIKE 'E'.
+    LEAVE LIST-PROCESSING.
+  ENDIF.
+
+  IF lv_t_lang = lv_s_lang.
+    MESSAGE: 'Source and target language can not be same' TYPE 'S' DISPLAY LIKE 'E'.
+    LEAVE LIST-PROCESSING.
+  ENDIF.
 ENDFORM.
