@@ -257,7 +257,7 @@ FORM process_data_mp .
   CLEAR: gs_output.
   REFRESH: lt_lxe_pcx.
 
-  LOOP AT lt_colob INTO DATA(ls_colob) WHERE objtype <> 'CAD4'.
+  LOOP AT lt_colob INTO DATA(ls_colob).
 
     REFRESH: lt_lxe_pcx.
     CLEAR: lv_lxestatprc, lv_lxestring.
