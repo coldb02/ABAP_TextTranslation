@@ -25,13 +25,14 @@ Translation Text for Message class can be downloaded form table *T100*
 Translation Text for Data Types in table can be downloaded form table *DD03M*
 
 **Upload Program name YPROGRAM_TEXT_UPLOAD/ T-code YTEXT_UP**<br />
-Program to upload -> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screen text/Text elements/Message class/Data type Translation<br />
+Program to upload -> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screen text/Text elements/Message class/Data type/Domain Translation<br />
 ![image](https://github.com/user-attachments/assets/42c75f20-e373-4a9c-98d0-a8eb4e514572)
 <br />
 **Radio Button** Can only perform/trigger one task at the time<br />
 **Executable/ Module Pool Prg**<br />
 **Message Class**<br />
 **Data Type**<br />
+**Domain**<br />
 **File name** Excel file for from the System<br />
 **Source Language** Source language<br />
 **Target Language**<br />
