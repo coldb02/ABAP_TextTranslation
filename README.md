@@ -5,7 +5,8 @@ This Git Repository contain 2 Programs to Help ABAPer's to download and upload t
 
 **Download Program name YPROGRAM_TEXT_DOWNLOAD/ T-code YTEXT_DOWN**<br />
 Program to download-> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screenText/Text elements<br />
-![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/74942876-b2cd-407d-bb4d-690e1429b695)
+![image](https://github.com/user-attachments/assets/e18e067a-d0c3-48d0-bd47-29ac0c9fd407)
+
 <br />
 **Module** Can only be One<br />
 **Language** Soure Text Language<br />
@@ -25,7 +26,8 @@ Translation Text for Data Types in table can be downloaded form table *DD03M*
 
 **Upload Program name YPROGRAM_TEXT_UPLOAD/ T-code YTEXT_UP**<br />
 Program to upload -> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screen text/Text elements/Message class/Data type Translation<br />
-![image](https://github.com/coldb02/ABAP_TextTranslation/assets/25544031/47b5fa06-40f4-4c91-ae95-d4a09ce5e5f2)<br />
+![image](https://github.com/user-attachments/assets/42c75f20-e373-4a9c-98d0-a8eb4e514572)
+<br />
 **Radio Button** Can only perform/trigger one task at the time<br />
 **Executable/ Module Pool Prg**<br />
 **Message Class**<br />
