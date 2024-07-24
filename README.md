@@ -4,7 +4,7 @@ SAP ABAP code to Download and Ypload translation in Mass
 This Git Repository contain 2 Programs to Help ABAPer's to download and upload the SAP object translation<br /> 
 
 **Download Program name YPROGRAM_TEXT_DOWNLOAD/ T-code YTEXT_DOWN**<br />
-Program to download-> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screenText/Text elements<br />
+Program to download-> SAP Module pool(Screen)/Module Pool Title/ Executable program Title/Selection screen Text/Text elements/ Class Text/Table data types/Domains<br />
 ![image](https://github.com/user-attachments/assets/e18e067a-d0c3-48d0-bd47-29ac0c9fd407)
 
 <br />
