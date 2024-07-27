@@ -4,7 +4,7 @@
 *&
 *&---------------------------------------------------------------------*
 *& https://github.com/coldb02/ABAP_TextTranslation ( Download the code
-*& for this GIT HUB- Abhinandan Dutt)
+*& from this GITHUB- Abhinandan Dutt)
 *&---------------------------------------------------------------------*
 REPORT yprogram_text_upload.
 
@@ -193,7 +193,7 @@ FORM process_data_mp .
   DELETE gt_program WHERE pname NOT IN s_prgna.
 
   DATA(lt_program_tmp) = gt_program.
-  IF line_exists( lt_program_tmp[ dynr = 'Text Element'] ).
+  IF line_exists( lt_program_tmp[ dynr = 'Text Element' ] ).
     DELETE lt_program_tmp WHERE dynr = 'Report Title' OR dynr = 'Screen Input'.
   ELSE.
     DELETE lt_program_tmp WHERE dynr = 'Screen Input'.
@@ -344,32 +344,12 @@ FORM process_data_mp .
 
 *-- save the translation as per the excel.
     IF p_save = 'X'.
-      CLEAR: lv_lxestatprc, lv_lxestring.
-      CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
-        EXPORTING
-          t_lang    = lv_t_lang
-          s_lang    = lv_s_lang
-          custmnr   = '999999'
-          objtype   = ls_colob-objtype
-          objname   = ls_colob-objname
-*         AUTODIST  =
-*         RFC_COPY  =
-        IMPORTING
-          pstatus   = lv_lxestatprc
-          err_msg   = lv_lxestring
-        TABLES
-          lt_pcx_s1 = lt_lxe_pcx.
-      IF lv_lxestatprc <> 'S'.
-        IF lv_lxestring IS NOT INITIAL.
-          MESSAGE lv_lxestring TYPE 'E'.
-          EXIT.
-        ELSE.
-          MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          EXIT.
-        ENDIF.
+      PERFORM: text_pair_write TABLES lt_lxe_pcx
+                               USING  lv_t_lang
+                                      lv_s_lang
+                                      ls_colob-objtype
+                                      ls_colob-objname.
 
-      ENDIF.
-      MESSAGE: '\(^_^)/ Translation Completed' TYPE 'S'.
     ENDIF.
 
     CLEAR: ls_colob, lv_dynnr_txt.
@@ -540,32 +520,12 @@ FORM process_data_mc .
 
 *-- save the translation as per the excel.
     IF p_save = 'X'.
-      CLEAR: lv_lxestatprc, lv_lxestring.
-      CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
-        EXPORTING
-          t_lang    = lv_t_lang
-          s_lang    = lv_s_lang
-          custmnr   = '999999'
-          objtype   = ls_colob-objtype
-          objname   = ls_colob-objname
-*         AUTODIST  =
-*         RFC_COPY  =
-        IMPORTING
-          pstatus   = lv_lxestatprc
-          err_msg   = lv_lxestring
-        TABLES
-          lt_pcx_s1 = lt_lxe_pcx.
-      IF lv_lxestatprc <> 'S'.
-        IF lv_lxestring IS NOT INITIAL.
-          MESSAGE lv_lxestring TYPE 'E'.
-          EXIT.
-        ELSE.
-          MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          EXIT.
-        ENDIF.
+      PERFORM: text_pair_write TABLES lt_lxe_pcx
+                               USING  lv_t_lang
+                                      lv_s_lang
+                                      ls_colob-objtype
+                                      ls_colob-objname.
 
-      ENDIF.
-      MESSAGE: '\(^_^)/ Translation Completed' TYPE 'S'.
     ENDIF.
 
     CLEAR: ls_colob, lv_dynnr_txt.
@@ -726,32 +686,12 @@ FORM process_data_dt .
 
 *-- save the translation as per the excel.
     IF p_save = 'X'.
-      CLEAR: lv_lxestatprc, lv_lxestring.
-      CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
-        EXPORTING
-          t_lang    = lv_t_lang
-          s_lang    = lv_s_lang
-          custmnr   = '999999'
-          objtype   = ls_colob-objtype
-          objname   = ls_colob-objname
-*         AUTODIST  =
-*         RFC_COPY  =
-        IMPORTING
-          pstatus   = lv_lxestatprc
-          err_msg   = lv_lxestring
-        TABLES
-          lt_pcx_s1 = lt_lxe_pcx.
-      IF lv_lxestatprc <> 'S'.
-        IF lv_lxestring IS NOT INITIAL.
-          MESSAGE lv_lxestring TYPE 'E'.
-          EXIT.
-        ELSE.
-          MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          EXIT.
-        ENDIF.
+      PERFORM: text_pair_write TABLES lt_lxe_pcx
+                               USING  lv_t_lang
+                                      lv_s_lang
+                                      ls_colob-objtype
+                                      ls_colob-objname.
 
-      ENDIF.
-      MESSAGE: '\(^_^)/ Translation Completed' TYPE 'S'.
     ENDIF.
 
     CLEAR: ls_colob.
@@ -912,32 +852,12 @@ FORM process_data_do .
 
 *-- save the translation as per the excel.
     IF p_save = 'X'.
-      CLEAR: lv_lxestatprc, lv_lxestring.
-      CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
-        EXPORTING
-          t_lang    = lv_t_lang
-          s_lang    = lv_s_lang
-          custmnr   = '999999'
-          objtype   = ls_colob-objtype
-          objname   = ls_colob-objname
-*         AUTODIST  =
-*         RFC_COPY  =
-        IMPORTING
-          pstatus   = lv_lxestatprc
-          err_msg   = lv_lxestring
-        TABLES
-          lt_pcx_s1 = lt_lxe_pcx.
-      IF lv_lxestatprc <> 'S'.
-        IF lv_lxestring IS NOT INITIAL.
-          MESSAGE lv_lxestring TYPE 'E'.
-          EXIT.
-        ELSE.
-          MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          EXIT.
-        ENDIF.
+      PERFORM: text_pair_write TABLES lt_lxe_pcx
+                               USING  lv_t_lang
+                                      lv_s_lang
+                                      ls_colob-objtype
+                                      ls_colob-objname.
 
-      ENDIF.
-      MESSAGE: '\(^_^)/ Translation Completed' TYPE 'S'.
     ENDIF.
 
     CLEAR: ls_colob.
@@ -1137,4 +1057,56 @@ FORM validate_labguage .
     MESSAGE: 'Source and target language can not be same' TYPE 'S' DISPLAY LIKE 'E'.
     LEAVE LIST-PROCESSING.
   ENDIF.
+ENDFORM.
+*&---------------------------------------------------------------------*
+*& Form text_pair_write
+*&---------------------------------------------------------------------*
+*& text
+*&---------------------------------------------------------------------*
+*&      --> LT_PCX_S1
+*&      --> T_LANG
+*&      --> S_LANG
+*&      --> OBJTYPE
+*&      --> OBJNAME
+*&---------------------------------------------------------------------*
+FORM text_pair_write  TABLES   p_lt_lxe_pcx STRUCTURE lxe_pcx_s1
+                      USING    p_t_lang     TYPE lxeisolang
+                               p_s_lang     TYPE lxeisolang
+                               p_objtype    TYPE lxeobjtype
+                               p_objname    TYPE lxeobjname.
+
+  DATA: lv_lxestatprc TYPE lxestatprc,
+        lv_lxestring  TYPE lxestring.
+
+  DELETE p_lt_lxe_pcx WHERE t_text IS INITIAL.
+
+  CHECK p_lt_lxe_pcx IS NOT INITIAL.
+
+  CLEAR: lv_lxestatprc, lv_lxestring.
+  CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
+    EXPORTING
+      t_lang    = p_t_lang
+      s_lang    = p_s_lang
+      custmnr   = '999999'
+      objtype   = p_objtype
+      objname   = p_objname
+*     AUTODIST  =
+*     RFC_COPY  =
+    IMPORTING
+      pstatus   = lv_lxestatprc
+      err_msg   = lv_lxestring
+    TABLES
+      lt_pcx_s1 = p_lt_lxe_pcx.
+  IF lv_lxestatprc <> 'S'.
+    IF lv_lxestring IS NOT INITIAL.
+      MESSAGE lv_lxestring TYPE 'E'.
+      EXIT.
+    ELSE.
+      MESSAGE ID sy-msgid TYPE 'E' NUMBER sy-msgno WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      EXIT.
+    ENDIF.
+
+  ENDIF.
+  MESSAGE: '\(^_^)/ Translation Completed' TYPE 'S'.
+
 ENDFORM.
