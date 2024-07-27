@@ -4,7 +4,7 @@
 *&
 *&---------------------------------------------------------------------*
 *& https://github.com/coldb02/ABAP_TextTranslation ( Download the code
-*& for this GIT HUB- Abhinandan Dutt)
+*& from this GITHUB- Abhinandan Dutt)
 *&---------------------------------------------------------------------*
 
 REPORT yprogram_text_download.
