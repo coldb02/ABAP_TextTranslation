@@ -48,8 +48,8 @@ SELECTION-SCREEN BEGIN OF BLOCK rad2 WITH FRAME TITLE TEXT-002.
   SELECT-OPTIONS: s_prgna  FOR figekwc_repform-repid MODIF ID id1 NO INTERVALS,
 
 *--               DDIC table and Data Element  " Always look form data emelent with Z* because Y* can be standard
-                  s_tname1  FOR dd03m-tabname       MODIF ID id2 NO INTERVALS,
-                  s_datael  FOR dd03m-rollname        MODIF ID id2 NO INTERVALS,
+                  s_tname1  FOR dd03m-tabname        MODIF ID id2 NO INTERVALS,
+                  s_datael  FOR dd03m-rollname       MODIF ID id2 NO INTERVALS,
 
                   s_struct FOR rsrd1-ddtype_val      MODIF ID id3 NO INTERVALS,
 
