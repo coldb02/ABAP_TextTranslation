@@ -1080,7 +1080,7 @@ FORM text_pair_write  TABLES   p_lt_lxe_pcx STRUCTURE lxe_pcx_s1
 
   DELETE p_lt_lxe_pcx WHERE t_text IS INITIAL.
 
-  CHECK p_lt_lxe_pcx IS NOT INITIAL.
+  CHECK p_lt_lxe_pcx[] IS NOT INITIAL.
 
   CLEAR: lv_lxestatprc, lv_lxestring.
   CALL FUNCTION 'LXE_OBJ_TEXT_PAIR_WRITE'
