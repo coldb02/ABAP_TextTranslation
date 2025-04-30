@@ -1,5 +1,8 @@
+# This version is considered obsolete because it contains less content that can be translated.
+# Refer to the newer repo https://github.com/coldb02/ABAP_TextTranslationNew
+
 # ABAP_TextTranslation
-SAP ABAP code to Download and Ypload translation in Mass
+SAP ABAP code to Download and Upload translation in Mass
 
 This Git Repository contain 2 Programs to Help ABAPer's to download and upload the SAP object translation<br /> 
 
